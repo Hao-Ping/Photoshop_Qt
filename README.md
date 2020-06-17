@@ -83,3 +83,24 @@ void Brightness::on_brightnessSlider_valueChanged(int value)
     cv::cvtColor(img_brightness, img_brightness, cv::COLOR_HSV2BGR);
 }
 ```
+## RGB
+R for example
+```cpp
+void RGB::on_R_Slider_valueChanged(int value)
+{
+    for (int i = 0; i <= img.cols; i++) {
+        for (int j = 0; j <= img.rows; j++) {
+            int red = img.at<cv::Vec3b>(i,j)[2];
+            if(red + value > 255){
+                img_rgb.at<cv::Vec3b>(i,j)[2] = 255;
+            }
+            else if (red + value < 0) {
+                img_rgb.at<cv::Vec3b>(i,j)[2] = 0;
+            }
+            else {
+                img_rgb.at<cv::Vec3b>(i,j)[2] = red + value;
+            }
+        }
+    }
+}
+```
