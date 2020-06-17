@@ -1,7 +1,4 @@
 ## Grabcut
-
-
-
 ```cpp
 void MainWindow::on_pushButton_grabcut_clicked()
 {
@@ -14,23 +11,14 @@ void MainWindow::on_pushButton_grabcut_clicked()
     cv::Mat foreground;
     img.copyTo(foreground, mask);
     img = foreground;
-    history.push_back(img.clone()); //by flappy
-    historyNum++;
-
-    ui->label_img->setPixmap(QPixmap::fromImage(cvMat2QImage(img).scaled(ui->label_img->width(),ui->label_img->height(),Qt::KeepAspectRatio)));
-
-    if(historyNum >= 1){
-        ui->pushButton_undo->setEnabled(true);
     }
 }
 ```
 
-##Hue
+## Hue
 ```cpp
 void hue::on_hueSlider_valueChanged(int value)
 {
-    ui->lcdHue->display(value);
-
     img_hue=img.clone();
     cv::cvtColor(img_hue, img_hue, cv::COLOR_BGR2HSV); //BGR to HSV
     for (int i = 0; i <= img_hue.cols; i++) {
@@ -47,7 +35,5 @@ void hue::on_hueSlider_valueChanged(int value)
             }
         }
     }
-    cv::cvtColor(img_hue, img_hue, cv::COLOR_HSV2BGR); //before display the image change HSV back to BGR
-    ui->label_img_hue->setPixmap(QPixmap::fromImage(cvMat2QImage(img_hue).scaled(ui->label_img_hue->width(),ui->label_img_hue->height(),Qt::KeepAspectRatio)));
 }
 ```
