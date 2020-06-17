@@ -37,3 +37,26 @@ void hue::on_hueSlider_valueChanged(int value)
     }
 }
 ```
+## Saturation
+```cpp
+void Saturation::on_saturationSlider_valueChanged(int value)
+{
+    img_saturation=img.clone();
+    cv::cvtColor(img_saturation, img_saturation, cv::COLOR_BGR2HSV);
+    for (int i = 0; i <= img_saturation.cols; i++) {
+        for (int j = 0; j <= img_saturation.rows; j++) {
+            int hue = img_saturation.at<cv::Vec3b>(i,j)[1];
+            if(hue + value >255){
+                img_saturation.at<cv::Vec3b>(i,j)[1]=255;
+            }
+            else if (hue + value <0) {
+                img_saturation.at<cv::Vec3b>(i,j)[1]=0;
+            }
+            else {
+                img_saturation.at<cv::Vec3b>(i,j)[1]=hue +value;
+            }
+        }
+    }
+    cv::cvtColor(img_saturation, img_saturation, cv::COLOR_HSV2BGR);
+}
+```
