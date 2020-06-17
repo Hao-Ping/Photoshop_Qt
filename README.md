@@ -60,3 +60,26 @@ void Saturation::on_saturationSlider_valueChanged(int value)
     cv::cvtColor(img_saturation, img_saturation, cv::COLOR_HSV2BGR);
 }
 ```
+## Brightness(Value)
+```cpp
+void Brightness::on_brightnessSlider_valueChanged(int value)
+{
+    img_brightness = img.clone();
+    cv::cvtColor(img_brightness, img_brightness, cv::COLOR_BGR2HSV);
+    for (int i = 0; i <= img_brightness.cols; i++) {
+        for (int j = 0; j <= img_brightness.rows; j++) {
+            int hue = img_brightness.at<cv::Vec3b>(i,j)[2];
+            if(hue + value >255){
+                img_brightness.at<cv::Vec3b>(i,j)[2]=255;
+            }
+            else if (hue + value <0) {
+                img_brightness.at<cv::Vec3b>(i,j)[2]=0;
+            }
+            else {
+                img_brightness.at<cv::Vec3b>(i,j)[2]=hue +value;
+            }
+        }
+    }
+    cv::cvtColor(img_brightness, img_brightness, cv::COLOR_HSV2BGR);
+}
+```
