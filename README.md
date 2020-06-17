@@ -104,3 +104,47 @@ void RGB::on_R_Slider_valueChanged(int value)
     }
 }
 ```
+
+## Box Filter
+```cpp
+void Filter::on_radioButton_box_clicked()
+{
+    img_filter = img.clone();
+    cv::blur(img, img_filter, cv::Size(w,h));
+}
+```
+## Gauss Blur
+```cpp
+void Filter::on_radioButton_Gauss_clicked()
+{
+    img_filter = img.clone();
+    cv::GaussianBlur(img, img_filter, cv::Size(w,h), 0);
+}
+```
+## Median Blur
+```cpp
+void Filter::on_radioButton_Median_clicked()
+{
+    img_filter = img.clone();
+    cv::medianBlur(img, img_filter, k);
+}
+```
+## Bilateral filter
+```
+void Filter::on_radioButton_bilateral_clicked()
+{
+    img_filter = img.clone();
+    cv::bilateralFilter(img, img_filter, k, k*2, k/2);
+}
+```
+## Sharpening
+```cpp
+void Filter::on_radioButton_sharpening_clicked()
+{
+    img_filter = img.clone();
+    cv::Mat sharpeningKernel = (cv::Mat_<double>(3,3) << 0, -1, 0, -1, 5, -1, 0, -1, 0);
+
+    filter2D(img, img_filter, -1, sharpeningKernel);
+}
+
+```
