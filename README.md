@@ -130,7 +130,7 @@ void Filter::on_radioButton_Median_clicked()
 }
 ```
 ## Bilateral filter
-```
+```cpp
 void Filter::on_radioButton_bilateral_clicked()
 {
     img_filter = img.clone();
