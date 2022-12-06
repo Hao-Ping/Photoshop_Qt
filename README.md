@@ -1,3 +1,7 @@
+# Simple photoshop with image processing on Qt
+demo: https://www.youtube.com/watch?v=aNB48DgDeRM
+![截圖 2022-12-06 下午2 23 44](https://user-images.githubusercontent.com/49761419/205837050-2fe943fb-8ff8-4324-b242-8c0ef07f35da.png)
+
 ## Grabcut
 ```cpp
 void MainWindow::on_pushButton_grabcut_clicked()
